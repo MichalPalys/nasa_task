@@ -47,8 +47,7 @@ class GetHolidaysListCommand extends Command
             } else {
                 $io->note(sprintf('You passed an option: --year=%s', $year));
             }
-
-            $output->writeln($this->christmasService->setPolishHolidaysToDatabaseByYear($year));
+            $this->christmasService->setPolishHolidaysToDatabaseByYear($year);
 
             $io->success('Done.');
         }
