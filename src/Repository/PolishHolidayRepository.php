@@ -19,6 +19,40 @@ class PolishHolidayRepository extends ServiceEntityRepository
         parent::__construct($registry, PolishHoliday::class);
     }
 
+    public function persist(PolishHoliday $polishHoliday)
+    {
+        $this->_em->persist($polishHoliday);
+    }
+
+    public function flush()
+    {
+        $this->_em->flush();
+    }
+
+    public function truncate()
+    {
+        $sql = 'TRUNCATE polish_holiday';
+        $this->_em->getConnection()->prepare($sql)->execute();
+
+        return $this;
+    }
+
+    public function drop()
+    {
+        $sql = 'DROP TABLE polish_holiday';
+        $this->_em->getConnection()->prepare($sql)->execute();
+
+        return $this;
+    }
+
+    public function create()
+    {
+        $sql = 'CREATE TABLE polish_holiday (id INT AUTO_INCREMENT NOT NULL, holiday_date DATE NOT NULL, holiday_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ENGINE = InnoDB';
+        $this->_em->getConnection()->prepare($sql)->execute();
+
+        return $this;
+    }
+
     // /**
     //  * @return PolishHoliday[] Returns an array of PolishHoliday objects
     //  */
