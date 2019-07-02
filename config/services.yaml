@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     nasa_api_key: 'Sbv5s6dIrDFORvwehbuN3cdUVTVAbbZO4mbch3mi'
+    nasa_url: 'https://api.nasa.gov/mars-photos/api/v1/rovers'
 services:
     # default configuration for services in *this* file
     _defaults:
