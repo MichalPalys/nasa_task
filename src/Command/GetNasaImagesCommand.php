@@ -8,10 +8,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use App\Service\NasaPhotoService;
 
 class GetNasaImagesCommand extends Command
 {
     protected static $defaultName = 'app:get-nasa-images';
+    private $nasaPhotoService;
+
+    public function __construct(NasaPhotoService $nasaPhotoService)
+    {
+        $this->nasaPhotoService = $nasaPhotoService;
+
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -23,17 +32,6 @@ class GetNasaImagesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
-        }
-
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
     }
 }
