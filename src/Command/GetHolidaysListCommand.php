@@ -27,7 +27,7 @@ class GetHolidaysListCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
+            ->setDescription('Save to database all Polish Holidays by year, default year 2018')
             ->addOption('year', null, InputOption::VALUE_REQUIRED, 'Input year', self::DEFAULT_YEAR)
         ;
     }
