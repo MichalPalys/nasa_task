@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\NasaPhoto;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -51,6 +52,18 @@ class NasaPhotoRepository extends ServiceEntityRepository
         $this->_em->getConnection()->prepare($sql)->execute();
 
         return $this;
+    }
+
+    public function findByDateRange(DateTime $from, DateTime $to)
+    {
+        return $this->createQueryBuilder('photo')
+            ->andWhere('photo.earthDate > :from')
+            ->andWhere('photo.earthDate < :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
