@@ -29,7 +29,7 @@ class PolishHolidayRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-    public function truncate()
+    public function truncate(): self
     {
         $sql = 'TRUNCATE polish_holiday';
         $this->_em->getConnection()->prepare($sql)->execute();
@@ -37,7 +37,7 @@ class PolishHolidayRepository extends ServiceEntityRepository
         return $this;
     }
 
-    public function drop()
+    public function drop(): self
     {
         $sql = 'DROP TABLE polish_holiday';
         $this->_em->getConnection()->prepare($sql)->execute();
@@ -45,7 +45,7 @@ class PolishHolidayRepository extends ServiceEntityRepository
         return $this;
     }
 
-    public function create()
+    public function create(): self
     {
         $sql = 'CREATE TABLE polish_holiday (id INT AUTO_INCREMENT NOT NULL, holiday_date DATE NOT NULL, holiday_name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ENGINE = InnoDB';
         $this->_em->getConnection()->prepare($sql)->execute();
