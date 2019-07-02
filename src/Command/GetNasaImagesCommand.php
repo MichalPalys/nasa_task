@@ -48,7 +48,7 @@ class GetNasaImagesCommand extends Command
                 $io->note(sprintf('You passed an option: --year=%s', $year));
             }
 
-            $this->nasaPhotoService->setNasaImageReletedWithPolishHolidaysToDatabaseByYear($year);
+            $this->nasaPhotoService->setNasaImageRelatedWithPolishHolidaysToDatabaseByYear($year);
 
             $io->success('Done.');
         }
