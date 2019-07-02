@@ -4,6 +4,8 @@ namespace App\Service;
 
 class NasaPhotoService
 {
+    const NASA_API_KEY = 'Sbv5s6dIrDFORvwehbuN3cdUVTVAbbZO4mbch3mi';
+
     private $christmasDaysService;
 
     public function __construct(ChristmasDaysService $christmasDaysService)
