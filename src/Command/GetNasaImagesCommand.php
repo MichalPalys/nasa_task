@@ -32,6 +32,23 @@ class GetNasaImagesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
+        $year = $input->getOption('year');
+        $year = intval($year);
 
+        if ($year < 1970 || $year > 2037) {
+            $io->error('Date is outside the range of Unix timestamps (i.e. before 1970 or after 2037)');
+        } else {
+
+            if ($year == self::DEFAULT_YEAR) {
+                $io->note(sprintf('This is default option: --year=%s', $year));
+            } else {
+                $io->note(sprintf('You passed an option: --year=%s', $year));
+            }
+
+            $this->nasaPhotoService->setNasaImageReletedWithPolishHolidaysToDatabaseByYear($year);
+
+            $io->success('Done.');
+        }
     }
 }
