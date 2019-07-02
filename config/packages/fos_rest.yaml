@@ -2,7 +2,10 @@
 fos_rest:
     format_listener:
         rules:
-            - { path: ^/api, fallback_format: json, priorities: [ json ] }
+            - { path: ^/, fallback_format: json, priorities: [ json ] }
+
+    exception:
+        enabled: true
     view:
         view_response_listener:  'force'
         formats:
