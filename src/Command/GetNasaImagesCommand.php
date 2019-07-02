@@ -16,9 +16,8 @@ class GetNasaImagesCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->setDescription('Save to database nasa image data related with Polish Holidays, default year 2018')
+            ->addOption('year', null, InputOption::VALUE_REQUIRED, 'Input year', self::DEFAULT_YEAR)
         ;
     }
 
