@@ -12,6 +12,8 @@ use App\Service\NasaPhotoService;
 
 class GetNasaImagesCommand extends Command
 {
+    const DEFAULT_YEAR = 2018;
+
     protected static $defaultName = 'app:get-nasa-images';
     private $nasaPhotoService;
 
