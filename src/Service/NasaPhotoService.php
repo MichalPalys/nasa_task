@@ -8,8 +8,9 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use App\Repository\NasaPhotoRepository;
 use App\Entity\NasaPhoto;
+use Doctrine\ORM\EntityNotFoundException;
 
-class NasaPhotoService
+final class NasaPhotoService
 {
     private $christmasDaysService;
     private $params;
@@ -27,6 +28,22 @@ class NasaPhotoService
         $this->params = $params;
         $this->httpClient = $httpClient;
         $this->nasaPhotoRepository = $nasaPhotoRepository;
+    }
+
+    /**
+     * @param int photoId
+     * @return NasaPhoto
+     * @throws EntityNotFoundException
+     */
+    public function getArticle(int $photoId): NasaPhoto
+    {
+        $nasaPhoto = $this->nasaPhotoRepository->findOneBy(['nasaId' => $photoId]);
+
+        if (!$nasaPhoto) {
+            throw new EntityNotFoundException('Photo with id '.$photoId.' does not exist!');
+        }
+
+        return $nasaPhoto;
     }
 
     public function setNasaImageRelatedWithPolishHolidaysToDatabaseByYear(int $year):void
