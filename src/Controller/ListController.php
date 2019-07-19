@@ -9,14 +9,18 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use App\Repository\NasaPhotoRepository;
+use App\Service\NasaPhotoService;
 
-class ListController extends AbstractFOSRestController
+final class ListController extends AbstractFOSRestController
 {
-    private $nasaPhotoRepository;
+    protected $nasaPhotoRepository;
+    protected $nasaPhotoService;
 
-    public function __construct(NasaPhotoRepository $nasaPhotoRepository)
+
+    public function __construct(NasaPhotoRepository $nasaPhotoRepository, NasaPhotoService $nasaPhotoService)
     {
         $this->nasaPhotoRepository = $nasaPhotoRepository;
+        $this->nasaPhotoService = $nasaPhotoService;
     }
 
     /**
@@ -72,10 +76,11 @@ class ListController extends AbstractFOSRestController
      * @Rest\Get("/photo/{photoId}", name="get_photo")
      * @param int $photoId
      * @return \FOS\RestBundle\View\View
+     * @throws \Doctrine\ORM\EntityNotFoundException
      */
     public function getPhoto(int $photoId)
     {
-        $data = $this->nasaPhotoRepository->findOneBy(['nasaId' => $photoId]);
+        $data = $this->nasaPhotoService->getArticle($photoId);
 //var_dump($id);
         return $this->view($data, Response::HTTP_OK);
     }
