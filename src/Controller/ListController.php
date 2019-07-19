@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -66,10 +67,16 @@ class ListController extends AbstractFOSRestController
         return $this->view($data, Response::HTTP_OK);
     }
 
-    public function getPhotoAction(int $id)
+    /**
+     * Retrieves an Photo resource
+     * @Rest\Get("/photo/{photoId}")
+     * @param int $photoId
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getPhoto(int $photoId)
     {
-        $data = $this->nasaPhotoRepository->findOneBy(['nasaId' => $id]);
-var_dump($id);
+        $data = $this->nasaPhotoRepository->findOneBy(['nasaId' => $photoId]);
+//var_dump($id);
         return $this->view($data, Response::HTTP_OK);
     }
 }
