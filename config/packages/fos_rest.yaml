@@ -8,7 +8,9 @@ fos_rest:
             - { path: ^/, fallback_format: json, priorities: [ json ] }
 
     exception:
-        enabled: true
+        exception_controller: 'fos_rest.exception.controller:showAction'
+        codes:
+            Doctrine\ORM\EntityNotFoundException: 404
     param_fetcher_listener: true
     view:
         view_response_listener:  'force'
