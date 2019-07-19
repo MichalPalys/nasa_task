@@ -69,7 +69,7 @@ class ListController extends AbstractFOSRestController
 
     /**
      * Retrieves an Photo resource
-     * @Rest\Get("/photo/{photoId}")
+     * @Rest\Get("/photo/{photoId}", name="get_photo")
      * @param int $photoId
      * @return \FOS\RestBundle\View\View
      */
